@@ -11,6 +11,7 @@ import {FormGroup, FormControl} from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
   members: Member[];
+  index;
 
   memberForm: FormGroup;
 
@@ -43,6 +44,12 @@ export class AdminComponent implements OnInit {
       name: new FormControl(),
       description : new FormControl()
     });
+  }
+
+  onDeleteMember() {
+  // this.mService.deleteMember();
+  // console.log('delete item');
+this.mService.deleteMember(this.index);
   }
 
 
