@@ -1,10 +1,12 @@
 import { Member } from './member.model';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersService {
+  memberChanged = new Subject<Member[]>();
   private members: Member[] = [
     new Member('Deaconess Mary', 'Music Minister & Worship Leader '),
     new Member('Pastor Seyi Emmanuel', 'Music Director'),
@@ -23,5 +25,20 @@ export class MembersService {
     new Member('Pastor Seyi Emmanuel', 'Music Director'),
   ];
 
+
+
+
+
   constructor() { }
+
+  getMember() {
+    return this.members.slice();
+  }
+
+addMember(member: Member) {
+  this.members.push(member);
+  this.memberChanged.next(this.members.slice());
+
+}
+
 }

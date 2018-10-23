@@ -5,6 +5,16 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
+import {Routes, RouterModule} from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+const appRoutes: Routes = [
+  {path: ' ', component: HeaderComponent},
+  {path: 'members', component: MembersComponent},
+  {path: 'admin', component: AdminComponent},
+
+
+];
 
 @NgModule({
   declarations: [
@@ -15,7 +25,10 @@ import { AdminComponent } from './admin/admin.component';
 
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
