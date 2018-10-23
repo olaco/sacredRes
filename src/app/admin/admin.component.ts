@@ -46,10 +46,16 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  onDeleteMember() {
+  onDeleteMember(index) {
   // this.mService.deleteMember();
   // console.log('delete item');
-this.mService.deleteMember(this.index);
+// this.mService.deleteMember(this.index);
+for (let i = 0; i <= this.members.length; i++) {
+if (index === this.members[i]) {
+  this.mService.deleteMember(i);
+ }
+}
+
   }
 
 
