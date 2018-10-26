@@ -2,6 +2,7 @@ import { MembersService } from './../members.service';
 import { Member } from './../member.model';
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,10 @@ export class AdminComponent implements OnInit {
   memberForm: FormGroup;
 
 
-  constructor(private mService: MembersService) { }
+  constructor(private mService: MembersService,
+  private router: Router,
+  private route: ActivatedRoute
+  ) { }
 
   onSubmit() {
   this.mService.addMember(this.memberForm.value);
@@ -47,9 +51,7 @@ export class AdminComponent implements OnInit {
   }
 
   onDeleteMember(index) {
-  // this.mService.deleteMember();
-  // console.log('delete item');
-// this.mService.deleteMember(this.index);
+  //
 for (let i = 0; i <= this.members.length; i++) {
 if (index === this.members[i]) {
   this.mService.deleteMember(i);
@@ -58,7 +60,10 @@ if (index === this.members[i]) {
 
   }
 
-
+  onCancel() {
+    // cancel linked to cancel button to take page to home
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
 
 
 }

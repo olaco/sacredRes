@@ -9,6 +9,7 @@ import { MembersService } from '../members.service';
   styleUrls: ['./members.component.css']
 })
 export class MembersComponent implements OnInit {
+  searchTerm: string;
 members: Member[];
   constructor(private mService: MembersService) { }
 

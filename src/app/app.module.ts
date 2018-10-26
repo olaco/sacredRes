@@ -7,6 +7,7 @@ import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
 import {Routes, RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
 
 const appRoutes: Routes = [
   {path: ' ', component: HeaderComponent},
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     MembersComponent,
-    AdminComponent
+    AdminComponent,
+    FilterPipe
 
   ],
   imports: [
