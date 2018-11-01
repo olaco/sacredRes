@@ -13,7 +13,9 @@ export class FilterPipe implements PipeTransform {
     }
 
     return members.filter(member =>
-      member.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
+      member.name.toLowerCase().
+      indexOf(searchTerm.toLowerCase())
+      !== -1);
   }
 
 }

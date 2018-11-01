@@ -1,8 +1,10 @@
+import { Observable } from 'rxjs';
 import { MembersService } from './../members.service';
 import { Member } from './../member.model';
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -37,7 +39,13 @@ export class AdminComponent implements OnInit {
         this.members = members;
       }
     );
-    this.members = this.mService.getMember();
+    this.mService.getMember()
+    .subscribe(
+      data => this.members = data,
+      err => console.log(err),
+      () => console.log('member log complete')
+
+    );
     this.initForm();
 
   }

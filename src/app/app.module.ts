@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
 import {Routes, RouterModule} from '@angular/router';
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
