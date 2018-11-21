@@ -69,13 +69,21 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  onDeleteMember(index) {
-  //
-for (let i = 0; i <= this.members.length; i++) {
-if (index === this.members[i]) {
-  this.mService.deleteMember(i);
- }
-}
+  onDeleteMember(index: Member) {
+    if (index !== null) {
+      console.log('jg');
+      this.mService.deleteMember(index.id).subscribe(
+        data => this.members = data,
+
+      );
+    }
+
+
+// for (let i = 0; i <= this.members.length; i++) {
+// if (index === this.members[i]) {
+//   this.mService.deleteMember(i);
+//  }
+// }
 
   }
 

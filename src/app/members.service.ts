@@ -14,6 +14,7 @@ const httpOptions = {
 export class MembersService {
   memberChanged = new Subject<Member[]>();
 
+
   private members: Member[] = [
     // new Member('Deaconess Mary', 'Music Minister & Worship Leader '),
     // new Member('Pastor Bola', 'Music Director'),
@@ -68,10 +69,18 @@ addMember(member: Member): Observable<Member[]> {
 
 }
 
-deleteMember(index: number) {
+deleteMember(index: number): Observable<Member[]> {
 
-  this.members.splice(index, 1);
-  this.memberChanged.next(this.members.slice());
+  // this.members.splice(index, 1);
+  // this.memberChanged.next(this.members.slice());
+  return this.http.delete<Member[]>('./delete.php?id=' + index, httpOptions).pipe(
+    map((res) => {
+      this.members = res['data'];
+      return this.members;
+    }),
+    catchError(this.handleError)
+
+  );
 
 }
 
