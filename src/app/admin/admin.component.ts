@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { MembersService } from './../members.service';
 import { Member } from './../member.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -10,11 +10,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AdminComponent implements OnInit {
   members: Member[];
   index;
+  member = new Member();
 
   memberForm: FormGroup;
 
@@ -25,8 +27,17 @@ export class AdminComponent implements OnInit {
   ) { }
 
   onSubmit() {
-  this.mService.addMember(this.memberForm.value);
-  console.log(this.memberForm);
+  this.mService.addMember(this.member).subscribe(data =>
+     this.members = data,
+    err => console.log(err),
+
+
+  );
+  console.log(this.member);
+  }
+  getpayload() {
+    // let payload = Object.assign({}, this.member);
+    // payload.
   }
 
 
@@ -43,7 +54,7 @@ export class AdminComponent implements OnInit {
     .subscribe(
       data => this.members = data,
       err => console.log(err),
-      () => console.log('member log complete')
+      () => console.log('member')
 
     );
     this.initForm();

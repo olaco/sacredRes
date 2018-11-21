@@ -1,10 +1,13 @@
 export class Member {
   public name: string;
   public description: string;
+  public id: number;
 
-  constructor(name: string, description: string) {
-    this.name = name;
-    this.description = description;
+  constructor(params: Object = {}) {
+    // tslint:disable-next-line:forin
+    for (const param in params) {
+      this[param] = params[param];
+    }
 
   }
 
