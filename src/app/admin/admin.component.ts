@@ -25,7 +25,9 @@ export class AdminComponent implements OnInit {
   private router: Router,
   private route: ActivatedRoute
   ) { }
-
+edit(member: Member){
+  this.member=member;
+}
   onSubmit() {
   this.mService.addMember(this.member).subscribe(data =>
      this.members = data,
@@ -84,6 +86,15 @@ export class AdminComponent implements OnInit {
 //   this.mService.deleteMember(i);
 //  }
 // }
+
+  }
+
+  // update
+  onUpdate( name, description, id) {
+    this.mService.updateMember(this.member).subscribe(
+      data => this.members = data,
+
+    );
 
   }
 

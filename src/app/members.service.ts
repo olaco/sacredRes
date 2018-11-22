@@ -73,7 +73,7 @@ deleteMember(index: number): Observable<Member[]> {
 
   // this.members.splice(index, 1);
   // this.memberChanged.next(this.members.slice());
-  return this.http.delete<Member[]>('./delete.php?id=' + index, httpOptions).pipe(
+  return this.http.delete<Member[]>('./delete.php?id' + index, httpOptions).pipe(
     map((res) => {
       this.members = res['data'];
       return this.members;
@@ -82,6 +82,17 @@ deleteMember(index: number): Observable<Member[]> {
 
   );
 
+}
+
+updateMember( member: Member): Observable<Member[]> {
+  return this.http.put('/update.php?id=', member).pipe(
+    map((res) => {
+      this.members = res['data'];
+      return this.members;
+    }),
+    catchError(this.handleError)
+
+  );
 }
 
 
