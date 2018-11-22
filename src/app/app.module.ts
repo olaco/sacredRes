@@ -4,16 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import {Routes, RouterModule} from '@angular/router';
 import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
-import {Routes, RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 const appRoutes: Routes = [
   {path: ' ', component: HeaderComponent},
   {path: 'members', component: MembersComponent},
   {path: 'admin', component: AdminComponent},
+
 
 
 ];
@@ -34,7 +37,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
